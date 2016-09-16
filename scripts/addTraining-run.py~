@@ -1,0 +1,35 @@
+#runs addTraining method to the specifications in this file
+import math
+from rmgpy.data.reference import *
+from addTraining import addTraining
+
+#input optional parameters to put in RMG
+shortDesc0=u"""CBS-QB3 calculation with 1-d rotor treatment at B3LYP/631G(d)"""
+longDesc0=u"""
+Quantum chemistry calculations CBS-QB3 calculation with 1-d rotor treatment at 
+B3LYP/631G(d)" using Gaussian 03 and Gaussian 09. High-pressure-limit rate 
+coefficient computed TST with Eckart Tunnelling"
+"""
+reference0=Article(
+        authors = ["K. Wang", "S. Villano", "A. Dean"],
+        title = u'Reactivity Structure Based Rate Estimation Rules for Alkyl Radical H-atom Shift and Alkenyl Radical Cycloaddition Reactions',
+        journal = "J. Phys. Chem. A",
+        volume = "119",
+        pages = """7205-7221""",
+        year = "2015",
+)
+#required conditions from paper
+family='Intra_R_Add_Exocyclic'
+A=[6.32e8,5.56e8,2.47e8,1.68e9,1.08e9,8.52e8,1.85e9,2.9e9,2.07e6,4.73e6,1.02e5,8.65e6,6.52e7,3.15e7,6.48e6,6.2e6,2.6e7,5.53e7,6.98e5,1.87e5,1.26e5,1.72e6,1.84e5,1.25e6,8.07e6,6.75e6,7.05e6,3.37e7,1.18e7,2.01e7,1.53e5,1.87e4,2.02e3,4.14e5,2.46e4,2.16e5]
+n=[.97,1,1.11,.84,.9,.89,.75,.79,1.46,1.31,1.8,1.3,1,1.08,1.25,1.3,1.13,1.02,1.33,1.48,1.48,1.2,1.4,1.22,1.02,1.04,1.03,.85,.99,.9,1.26,1.43,1.67,1.14,1.32,1.18]
+Ea=[8.9,9.3,9.1,9.2,7.3,10.4,6.2,8.5,14.1,13.1,11.1,13.8,13.0,12.7,15,11.7,12.4,13.5,4.7,3.9,3.7,4.3,6.2,3.7,3.9,4.5,3.2,4.1,4.3,4.3,5.1,4.1,2.6,5,6.1,4.3]
+reactant1smiles=['C=CC[CH2]','C=CC[CH]C','C=CC[C](C)C','CC=CC[CH2]','C=CC(C)[CH2]','C=C(C)C[CH2]','C=CC(C)(C)[CH2]','CC(C)=CC[CH2]','C=CCC[CH2]','C=CCC[CH]C','C=CCC[C](C)C','CC=CCC[CH2]','C=CCC(C)[CH2]','C=CC(C)C[CH2]','C=C(C)CC[CH2]','C=CCC(C)(C)[CH2]','C=CC(C)(C)C[CH2]','CC(C)=CCC[CH2]','C=CCCC[CH2]','C=CCCC[CH]C','C=CCCC[C](C)C','CC=CCCC[CH2]','C=C(C)CCC[CH2]','C=CCCC(C)[CH2]','C=CCC(C)C[CH2]','C=CC(C)CC[CH2]','C=CCCC(C)(C)[CH2]','C=CCC(C)(C)C[CH2]','C=CC(C)(C)CC[CH2]','CC(C)=CCCC[CH2]','C=CCCCC[CH2]','C=CCCCC[CH]C','C=CCCCC(C)(C)[CH2]','CC=CCCCC[CH2]','C=C(C)CCCC[CH2]','CC(C)=CCCCC[CH2]']
+#reactant2smiles=...
+
+
+addTraining(family,A,n,Ea,reactant1smiles,
+#		smiles2=reactant2smiles,			#for bimolecular reactions
+		reference=reference0,
+		shortDesc=shortDesc0,
+		longDesc=longDesc0,
+		directory='/home/mark')
