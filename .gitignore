@@ -1,0 +1,33 @@
+################################################################################
+#
+#   Files for git to ignore
+#
+################################################################################
+
+# MacOS files
+.DS_Store
+
+# NetBeans project files
+nbproject/*
+
+# Eclipse project files
+.project
+.pydevproject
+.settings/*
+
+# Quantum Mechanics temporary, cache, and result files
+QMfiles/*
+QMscratch/*
+
+# ipython checkpoints
+**/.ipynb_checkpoints/**
+
+# cantera files
+*.cti
+
+# csv files
+*.csv
+
+# ipython folder except for notebooks
+ipython/*
+!ipython/*.ipynb
