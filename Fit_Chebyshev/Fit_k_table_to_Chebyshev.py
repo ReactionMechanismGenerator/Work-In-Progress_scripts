@@ -3,7 +3,7 @@
 
 """
 This script takes a table of k(T,P) values in a csv file with specific units (k[=]cm^3/mol*s, T[=]K, P[=]atm), 
-and in a specific format (see example csv file 'OH_CO/2006_Joshi_OH_CO_k1_table_example.csv') 
+and in a specific format (see example csv file '2006_Joshi_OH_CO_k1_table_example.csv') 
 and fits a Chebyshev polynomial of specified order to it using the built-in features of Cantherm.
 
 The fit is output in CHEMKIN format, and if pylab is available a plot of the fit is also generated.
@@ -31,7 +31,7 @@ order = 2
 #P is in atm
 #k is in cm^3/mol*s
 
-k_data_path = 'OH_CO/2006_Joshi_OH_CO_k1_table_example.csv'
+k_data_path = '2006_Joshi_OH_CO_k1_table_example.csv'
 
 #Details of Chebyshev fit
 num_Cheb_coeff_1 = 6
