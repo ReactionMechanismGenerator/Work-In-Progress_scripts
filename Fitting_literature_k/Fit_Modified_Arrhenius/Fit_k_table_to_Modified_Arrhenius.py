@@ -24,11 +24,13 @@ from rmgpy.kinetics.arrhenius import Arrhenius
 #T is in K
 #k is in cm, mol, s units
 
-k_data_path = '2012_Kislov_Phenyl_Propene_k_table_example.csv'
+k_data_path = 'Phenyl_Propene_inew_to_i4.csv'
 
 #Overall name of system being fit
-system_name = 'Phenyl + Propene'
+system_name = 'Phenyl + Propene inew to i4'
 
+#Specify whether to do a 3-parameter (modfied) or 2-parameter (simple) Arrhenius fit
+threeParams=True
 ###########Read table of k data (must be in mol, cm, s, K units)########################################
 f = csv.reader(open(k_data_path, 'r'))
 
@@ -55,16 +57,16 @@ kunits = []
 
 for rxn_number in range(kdata.shape[1]):
     kunits.append({1: 's^-1', 2: 'cm^3/(mol*s)', 3: 'cm^6/(mol^2*s)'}[order[rxn_number]])
-    kinetics.append(Arrhenius().fitToData(Tdata, kdata[:,rxn_number], kunits=kunits[rxn_number]))
+    kinetics.append(Arrhenius().fitToData(Tdata, kdata[:,rxn_number], kunits=kunits[rxn_number], threeParams=threeParams))
 
 ########################Output Modified Arrhenius fit to CHEMKIN input file format#####################################
 # Initialize (and clear!) the output files for the job
 outputDirectory = os.path.dirname(os.path.abspath(k_data_path))
 
 chemkinFile = os.path.join(outputDirectory, system_name.replace(" ", "_") + '.inp')
+
 with open(chemkinFile, 'w') as f:
     pass
-
 
 Tcount = Tdata.shape[0]
 reactioncount = kdata.shape[1]
@@ -116,7 +118,7 @@ try:
     	pylab.xlabel('1000 / Temperature (1000/K)')
     	pylab.ylabel('Rate coefficient ({0})'.format(kunits[rxn_number]))
     	pylab.title(reaction_string[rxn_number])
-    	pylab.savefig(os.path.join(outputDirectory, reaction_string[rxn_number].replace(" ", "_") + '_Modified_Arrhenius_fit.pdf'))
+    	pylab.savefig(os.path.join(outputDirectory, reaction_string[rxn_number].replace(" ", "_").replace("<=>","to") + '_Modified_Arrhenius_fit.pdf'))
     	pylab.close()
     
 except ImportError:
