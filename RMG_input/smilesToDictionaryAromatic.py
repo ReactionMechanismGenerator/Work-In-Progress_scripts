@@ -16,7 +16,7 @@ import re
 from rmgpy.species import Species
 from rmgpy.chemkin import saveSpeciesDictionary
 from rmgpy.molecule.molecule import Molecule
-from rmgpy.molecule.resonance import generateAromaticResonanceIsomers
+from rmgpy.molecule.resonance import generateAromaticResonanceStructures
 
 
 def main(inputPath, outputPath):
@@ -36,7 +36,7 @@ def main(inputPath, outputPath):
 
                 # Try to convert to aromatic form
                 mol = Molecule().fromSMILES(smiles)
-                aromatic = generateAromaticResonanceIsomers(mol)
+                aromatic = generateAromaticResonanceStructures(mol)
 
                 if aromatic:
                     spec = Species(molecule=aromatic)
