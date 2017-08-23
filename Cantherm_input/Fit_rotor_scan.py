@@ -2,10 +2,13 @@
 # encoding: utf-8
 
 """
+Fit a hindered rotor scan (in 2-column text file format) to both a Fourier series and a single cosine function. 
+Outputs the best fit.
 
 Run using the  following commands:
 
-python Evaluate_NASA_polynomials.py "path_to_chemkin_file"
+python Fit_rotor_scan.py "path_to_scan_log.txt" symmetry_of_rotor
+
 """
 
 import argparse
@@ -21,7 +24,7 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('scanLogPath', metavar='CHEMKIN', type=str, nargs=1,
+    parser.add_argument('scanLogPath', metavar='SCAN', type=str, nargs=1,
         help='The path of scanlog text file')
 
     parser.add_argument('symmetry',type=int, nargs=1,
@@ -32,14 +35,6 @@ if __name__ == '__main__':
     symmetry = args.symmetry[0]
 
     directory = os.path.abspath(os.path.dirname(scanLogPath))
-
-    #Save output in same directory as input
-    outputDirectory = os.path.dirname(os.path.abspath(scanLogPath))
-
-    # Initialize (and clear!) the output files for the job
-    # outputFile = os.path.join(outputDirectory, 'evaluated_NASA_polynomial.py')
-    # with open(outputFile, 'w') as f:
-    #     pass
 
     #Load the scanlog file
     scanlog=ScanLog(scanLogPath)
