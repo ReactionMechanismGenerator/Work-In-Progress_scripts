@@ -16,7 +16,7 @@ OpenBabel format:
 import argparse
 import pybel
 
-from rmgpy.molecule.parser import fromOBMol
+from rmgpy.molecule.converter import fromOBMol
 from rmgpy.molecule.molecule import Molecule
 from rmgpy.species import Species
 from rmgpy.chemkin import saveSpeciesDictionary

@@ -16,9 +16,9 @@ OpenBabel format:
 import argparse
 import pybel
 
-from rmgpy.molecule.parser import fromOBMol
+from rmgpy.molecule.converter import fromOBMol
 from rmgpy.molecule.molecule import Molecule
-from rmgpy.molecule.resonance import generateAromaticResonanceStructures
+from rmgpy.molecule.resonance import generate_aromatic_resonance_structures
 from rmgpy.species import Species
 from rmgpy.chemkin import saveSpeciesDictionary
 
@@ -69,7 +69,7 @@ def main(inputPath, outputPath):
                 mol = fromOBMol(Molecule(), obmol.OBMol)
 
                 # Try to convert to aromatic form
-                aromatic = generateAromaticResonanceStructures(mol)
+                aromatic = generate_aromatic_resonance_structures(mol)
 
                 if aromatic:
                     spec = Species(molecule=aromatic)

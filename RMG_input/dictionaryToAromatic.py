@@ -9,7 +9,7 @@ of aromatic species to the aromatic (benzene bond) form.
 import argparse
 from rmgpy.species import Species
 from rmgpy.chemkin import loadSpeciesDictionary, saveSpeciesDictionary
-from rmgpy.molecule.resonance import generateAromaticResonanceStructures
+from rmgpy.molecule.resonance import generate_aromatic_resonance_structures
 
 
 def main(inputPath, outputPath):
@@ -25,7 +25,7 @@ def main(inputPath, outputPath):
                 species = Species().fromAdjacencyList(adjlist)
 
                 # Try to generate the aromatic form of the molecule
-                aromatic = generateAromaticResonanceStructures(species.molecule[0])
+                aromatic = generate_aromatic_resonance_structures(species.molecule[0])
                 if aromatic:
                     species.molecule = aromatic
 
